@@ -1,0 +1,76 @@
+﻿@model EmployeeViewModel
+
+@{ 
+    <h3>@Model.PageTitle</h3>
+}
+<script src="~/js/jquery-3.4.1.min.js"></script>
+<style>
+    iscolor{
+        background-color:yellow;
+    }
+    nocolor{
+        background-color:white;
+    }
+</style>
+<script>
+
+    //$('td').click(function () {
+    //    debugger;
+    //    $(this).css("background-color", "yellow");
+    //})
+    function tdClick(cntrl) {
+        debugger;
+        if ($(cntrl).hasClass("nocolor")) {
+            $(cntrl).removeClass("nocolor");
+            $(cntrl).addClass("iscolor");
+        }
+        else {
+            $(cntrl).removeClass("iscolor");
+            $(cntrl).addClass("nocolor");
+        }
+    }
+    </script>
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.Employee.Name</h1>
+            </div>
+            <div class="card-body  text-center">
+                <img class="card-img-top img" src="~/images/2.jpg" />
+                <h4>@Model.Employee.Id</h4>
+                <h4>@Model.Employee.Email</h4>
+                <h4>@Model.Employee.Department</h4>
+            </div>
+            <div class="card-footer text-center">
+                <a asp-controller="Home" asp-action="" class="btn btn-primary">Back</a>
+                <a asp-controller="Home" asp-action="" class="btn btn-primary">Edit</a>
+                <a asp-controller="Home" asp-action="" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+@*<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="nocolor" onclick="tdClick(this)">@Model.Employee.Id</td>
+            <td>@Model.Employee.Name</td>
+            <td>@Model.Employee.Email</td>
+            <td>@Model.Employee.Department</td>
+        </tr>
+    </tbody>
+</table>*@
+
+@section Scripts{
+<div>
+    <script src="~/js/CustomScript.js"></script>
+</div>
+}

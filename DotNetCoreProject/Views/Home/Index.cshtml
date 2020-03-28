@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Employee>
+
+@{
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Index";
+
+}
+
+<h1>Index</h1>
+
+
+
+<div class="card-deck">
+    @foreach (var item in Model)
+    {
+    <div class="card m3">
+        <div class="card-header">
+            <h3>@item.Name</h3>
+        </div>
+        <img class="card-img-top" src="~/images/1.jpg" asp-append-version="true" width="300" height="300"/>
+        <div class="card-footer text-center">
+            <a class="btn btn-primary m-1" asp-controller="Home" asp-action="Details" asp-route-Id="@item.Id">View </a> |
+            @Html.ActionLink("Edit", "Edit","Home",null, new { @class="btn btn-primary m-1"/* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details","Home",null, new { @class="btn btn-primary m-1 btn-margin"/* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete","Home",null, new { @class="btn btn-primary m-1 btn-margin"/* id=item.PrimaryKey */ })
+        </div>
+    </div>
+    }
+</div>
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                <a asp-controller="Home" asp-action="Details" asp-route-Id="@item.Id">View </a> |
+                <a href="/Home/Details/@item.Id">View</a> |
+                @Html.ActionLink("View", "Details", new { Id=item.Id }) |
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@

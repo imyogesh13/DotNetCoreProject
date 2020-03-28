@@ -24,6 +24,7 @@ namespace DotNetCoreProject.Controllers
         public ViewResult Index()
         {
             //int? i = null;
+            //add code
             IEnumerable<Employee> objLiEmp = _employeeRepository.GetAllEmployee();
             return View(objLiEmp);
              

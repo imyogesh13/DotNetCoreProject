@@ -17,7 +17,7 @@
         <div class="card-header">
             <h3>@item.Name</h3>
         </div>
-        <img class="card-img-top" src="~/images/1.jpg" asp-append-version="true" width="300" height="300"/>
+        <img class="card-img-top" src="~/images/@item.PhotoPath" asp-append-version="true" width="300" height="300"/>
         <div class="card-footer text-center">
             <a class="btn btn-primary m-1" asp-controller="Home" asp-action="Details" asp-route-Id="@item.Id">View </a> |
             @Html.ActionLink("Edit", "Edit","Home",null, new { @class="btn btn-primary m-1"/* id=item.PrimaryKey */ }) |

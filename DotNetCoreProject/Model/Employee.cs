@@ -8,7 +8,7 @@ namespace DotNetCoreProject.Model
 {
     public class Employee
     {
-
+        [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(50,ErrorMessage ="Name field can not be empty")]

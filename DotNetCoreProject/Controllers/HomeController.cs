@@ -1,8 +1,10 @@
 ﻿using DotNetCoreProject.Model;
 using DotNetCoreProject.ViewModel;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,11 +13,14 @@ namespace DotNetCoreProject.Controllers
     //[Route("[controller]")]
     public class HomeController:Controller
     {
-        private IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public HomeController(IEmployeeRepository employeeRepository)
+        private readonly IHostingEnvironment _hostingEnvironment;
+
+        public HomeController(IEmployeeRepository employeeRepository, IHostingEnvironment hostingEnvironment)
         {
             _employeeRepository = employeeRepository;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         //[Route("")]
@@ -46,25 +51,31 @@ namespace DotNetCoreProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Employee emp)
+        public IActionResult Create(EmployeeCreateVM model)
         {
             if (ModelState.IsValid)
             {
-                Employee obj = _employeeRepository.Add(emp);
+                string uniqueFileName = string.Empty;
+                if(model.Photo != null)
+                {
+                    string uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
+                   string filePath = Path.Combine(uploadFolder, uniqueFileName);
+                    model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
 
-                //return RedirectToAction("Details", obj.Id);
+                }
+                Employee obj = new Employee()
+                {
+                    Name = model.Name,
+                    Email = model.Email,
+                    PhotoPath = uniqueFileName,
+                    Department = model.Department
+                };
+                _employeeRepository.Add(obj);
+
+                return RedirectToAction("Details", obj.Id);
             }
-            return View(emp);
-        }
-
-        private Tuple<int,string> Add(int i)
-        {
-            return new Tuple<int, string>(1, "");
-        }
-
-        private (int, string) Add()
-        {
-            return (1, "");
+            return View();
         }
     }
 }

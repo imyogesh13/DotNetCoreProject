@@ -37,14 +37,14 @@
                 <h1>@Model.Employee.Name</h1>
             </div>
             <div class="card-body  text-center">
-                <img class="card-img-top img" src="~/images/2.jpg" />
+                <img class="card-img-top imgThumbnails" src="~/images/@Model.Employee.PhotoPath" asp-append-version="true"/>
                 <h4>@Model.Employee.Id</h4>
                 <h4>@Model.Employee.Email</h4>
                 <h4>@Model.Employee.Department</h4>
             </div>
             <div class="card-footer text-center">
                 <a asp-controller="Home" asp-action="" class="btn btn-primary">Back</a>
-                <a asp-controller="Home" asp-action="" class="btn btn-primary">Edit</a>
+                <a asp-controller="Home" asp-action="Edit" class="btn btn-primary">Edit</a>
                 <a asp-controller="Home" asp-action="" class="btn btn-danger">Delete</a>
             </div>
         </div>

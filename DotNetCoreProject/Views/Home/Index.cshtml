@@ -13,15 +13,14 @@
 <div class="card-deck">
     @foreach (var item in Model)
     {
-    <div class="card m3">
+    <div class="card m-3" style="min-width:18rem; max-height:30.5%">
         <div class="card-header">
             <h3>@item.Name</h3>
         </div>
-        <img class="card-img-top" src="~/images/@item.PhotoPath" asp-append-version="true" width="300" height="300"/>
+        <img class="card-img-top imgThumbnails" src="~/images/@item.PhotoPath" asp-append-version="true"/>
         <div class="card-footer text-center">
-            <a class="btn btn-primary m-1" asp-controller="Home" asp-action="Details" asp-route-Id="@item.Id">View </a> |
-            @Html.ActionLink("Edit", "Edit","Home",null, new { @class="btn btn-primary m-1"/* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details","Home",null, new { @class="btn btn-primary m-1 btn-margin"/* id=item.PrimaryKey */ }) |
+            <a class="btn btn-primary m-1" asp-controller="Home" asp-action="Details" asp-route-Id="@item.Id">View </a> 
+            <a class="btn btn-primary m-1" asp-controller="Home" asp-action="Edit" asp-route-Id="@item.Id">Edit</a>|
             @Html.ActionLink("Delete", "Delete","Home",null, new { @class="btn btn-primary m-1 btn-margin"/* id=item.PrimaryKey */ })
         </div>
     </div>

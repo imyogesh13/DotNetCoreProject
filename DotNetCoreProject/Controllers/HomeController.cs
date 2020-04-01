@@ -40,11 +40,11 @@ namespace DotNetCoreProject.Controllers
         public ViewResult Details(int? Id)
         {
             Employee emp = _employeeRepository.GetEmployee(Id ?? 1);
-            if(emp == null)
-            {
-                Response.StatusCode = 404;
-                return View("PageNotFound", Id.Value);
-            }
+            //if(emp == null)
+            //{
+            //    Response.StatusCode = 404;
+            //    return View("PageNotFound", Id.Value);
+            //}
 
             EmployeeViewModel empVM = new EmployeeViewModel()
             {
